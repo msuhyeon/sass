@@ -1,0 +1,90 @@
+/*
+    여러줄 주석이며 이 주석은 css로 변환 될 때 보인다
+    한 줄 주석은 css로 변환되어도 보이지 않음
+*/
+
+
+// ex1
+// 중첩(Nesting)
+// Nesting을 사용하면 html의 시각적 계층 방식과 동일하게 CSS를 중첩하여 작성할 수 있다.
+// CSS가 구조화 되어 가독성이 높아지며 유지 보수하기 편리해진다.
+
+// Nesting을 사용하는 이유?
+// 기존 css는 자식에게 스타일 적용하려고 할 때 마다 최상위 선택자(부모)를 반복해서 선언해야하는데
+// 중첩은 최상위 선택자를 한번만 선언해도 자식 선택자에게 스타일을 적용할 수 있어서 코드 반복 줄임
+
+// 지나친 중첩은 코드를 보는게 불편하고 컴파일 했을 때 불필요한 선택자를 사용하게된다.
+
+// 중첩은 선택자 뿐만 아니라 스타일 속성도 가능하다
+nav{
+    background: lightskyblue;
+    padding: 10px;
+    height: 50px;
+    ul{
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        li{
+            color: white;
+            margin-right: 10px;
+        }
+    }
+}
+
+//ex2
+.background-img{
+    width:100%;
+    height: auto;
+    background: {
+        image: url("./sample.jpg");
+        position: center center;
+        repeat: no-repeat;
+    };
+}
+
+// ampersand 앰퍼샌드
+// & 는 상위에 있는 부모선택자를 가리킴
+// & 를 이용하하여 after, hover 등의 가상요소, 가상클래스, class나 id 셀렉터 등을 참조할 수 있다
+
+.box {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    transition: all 1s;
+    &:hover {
+        background-color: blue;
+    }
+}
+
+// & 를 응용하면 아래 예시와 같이 공통 클래스명을 가진 선택자들을 중첩 시킬 수 있다.
+
+.box {
+    &-yellow {
+        background: yellow;
+    }
+    &-red {
+        background: red;
+    }
+    &-green {
+        background: green;
+    }
+}
+
+// @at-root: 중첩에서 벗어나는 방법
+// 중첩에서 벗어나고 싶은 선택자 앞에 @at-root를 작성한다
+
+.one {
+    color: red;
+    .two {
+    color: green;
+
+        .three {
+            color: blue;
+
+            @at-root p {
+                color: skyblue;
+
+            }
+        }
+    }
+}

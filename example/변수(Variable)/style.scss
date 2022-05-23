@@ -1,0 +1,29 @@
+$bgColor : red;
+$font-h1 : 28px;
+$valid-sides : left, center, right;
+$font-sizes: ("myh1": 45px, "myh2": 19px, "myp": 16px);
+
+h1 {
+    $spanColor: blue; // 지역변수: 선언한 자기 자신을 감싸고 있는 {} 안에서 사용됨. 하위 단계에 있는 {}에서도 사용할 수 있음.
+    color: $bgColor;
+    // font-size: $font-h1;
+    font-size: map-get($font-sizes, "myp") * 2; // 산술 연산
+    span {
+        color: $spanColor;
+    }
+}
+
+p {
+    // color: $spanColor; // 지역변수 이기 때문에 사용 불가
+    text-align: nth($valid-sides, 2);
+}
+
+// Operator
+// @debug 100px > 10s; // Error: Incompatible units px and s
+// @debug 100 > 50px; // true
+// @debug "Open Sans" != "Roboto"; // true
+// @debug rgba(53, 187, 169, 1) === #35bba9; // true
+// @debug (5px 7px 10px) != (5px, 7px, 10px); //true
+// @debug sans- + serif; // sans-serif
+// @debug not true; // false
+// @debug true and true; // true
