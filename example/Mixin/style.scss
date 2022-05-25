@@ -1,0 +1,47 @@
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+@mixin flexCenterTwo($size: 30px) { // default 값 설정
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    li {
+        margin-right: $size;
+    }
+}
+
+.one {
+    @include flexCenterTwo(10px);
+    background-color: aqua;
+    // li {
+    //     margin-right: 10px;
+    // }
+}
+
+.two {
+    @include flexCenterTwo(20px); 
+    background-color: chocolate;
+    // li {
+    //     margin-right: 20px;
+    // }
+}
+
+.three {
+    @include flexCenterTwo {
+        color: white;
+    }; 
+    background-color: chocolate;
+    // li {
+    //     margin-right: 20px;
+    // }
+}
+
+// 인수(Arguments)
+// mixin 이름 뒤에 인수를 넣어서 사용 할 수 있음.
+// 일반 언어처럼 매개변수와 인수의 갯수가 같아야함.
+// @Content를 사용하면 원하는 부분에 스타일을 추가하여 전달할 수 있다.
